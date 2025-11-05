@@ -1,0 +1,631 @@
+//1.FizzBuzz Variation
+
+
+//using System;
+//class Program
+//{
+//    static void Main()
+//    {
+//        int n = int.Parse(Console.ReadLine() ?? "0");
+//        for (int i = 1; i <= n; i++)
+//        {
+//            string s = (i % 3 == 0 ? "Fizz" : "") + (i % 5 == 0 ? "Buzz" : "");
+//            Console.WriteLine(s == "" ? i.ToString() : s);
+//        }
+//    }
+//}
+
+
+
+
+//2.Prime Number Checker
+
+
+//using System;
+//class Program
+//{
+//    static void Main()
+//    {
+//        int n = int.Parse(Console.ReadLine() ?? "0");
+//        bool prime = n > 1;
+//        for (int i = 2; i * i <= n && prime; i++) if (n % i == 0) prime = false;
+//        if (prime) Console.WriteLine("Prime");
+//        else
+//        {
+//            Console.Write("Not Prime. Factors: ");
+//            for (int i = 1; i <= n; i++) if (n % i == 0) Console.Write(i + (i < n ? " " : ""));
+//        }
+//    }
+//}
+
+
+//3.Sum of Digits Until Single Digit
+
+//using System;
+//class Program
+//{
+//    static void Main()
+//    {
+//        long n = long.Parse(Console.ReadLine() ?? "0");
+//        while (n > 9)
+//        {
+//            long sum = 0;
+//            while (n > 0) { sum += n % 10; n /= 10; }
+//            n = sum;
+//        }
+//        Console.WriteLine(n);
+//    }
+//}
+
+
+//4.Reverse a Number and Check Palindrome
+//using System;
+//class Program
+//{
+//    static void Main()
+//    {
+//        long n = long.Parse(Console.ReadLine() ?? "0"), t = n, r = 0;
+//        while (t > 0) { r = r * 10 + t % 10; t /= 10; }
+//        Console.WriteLine(r == n ? "Palindrome" : "Not Palindrome");
+//    }
+//}
+
+
+//5.Find GCD and LCM of Two Numbers
+//using System;
+//class Program
+//{
+//    static void Main()
+//    {
+//        long a = long.Parse(Console.ReadLine() ?? "0");
+//        long b = long.Parse(Console.ReadLine() ?? "0");
+//        long x = a, y = b;
+//        while (b != 0) { long t = b; b = a % b; a = t; }
+//        long gcd = a, lcm = (x * y) / gcd;
+//        Console.WriteLine($"GCD = {gcd}, LCM = {lcm}");
+//    }
+//}
+
+
+//6.Second Largest Element in Array
+
+//using System;
+//class Program
+//{
+//    static void Main()
+//    {
+//        int n = int.Parse(Console.ReadLine() ?? "0");
+//        int[] a = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+//        int max = int.MinValue, second = int.MinValue;
+//        foreach (int x in a)
+//            if (x > max) { second = max; max = x; }
+//            else if (x > second && x < max) second = x;
+//        Console.WriteLine(second == int.MinValue ? "No second largest" : second.ToString());
+//    }
+//}
+
+
+
+//7.Remove Duplicates from Array
+
+//using System;
+//using System.Collections.Generic;
+//class Program
+//{
+//    static void Main()
+//    {
+//        int n = int.Parse(Console.ReadLine() ?? "0");
+//        string input = Console.ReadLine();
+//        List<char> res = new List<char>();
+//        foreach (char c in input)
+//            if (!res.Contains(c)) res.Add(c);
+//        Console.WriteLine(string.Join("", res));
+//    }
+//}
+
+
+
+//8.Rotate Array by k Positions
+
+//using System;
+//class Program
+//{
+//    static void Main()
+//    {
+//        int n = int.Parse(Console.ReadLine() ?? "0");
+//        int[] a = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+//        int k = int.Parse(Console.ReadLine() ?? "0") % n;
+
+//        int[] res = new int[n];
+//        for (int i = 0; i < n; i++)
+//            res[(i + k) % n] = a[i];
+
+//        Console.WriteLine(string.Join(" ", res));
+//    }
+//}
+
+
+
+//9.Find Missing Number in Sequence
+
+//using System;
+//class Program
+//{
+//    static void Main()
+//    {
+//        int n = int.Parse(Console.ReadLine() ?? "0");
+//        int[] a = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+//        int total = n * (n + 1) / 2;
+//        int sum = 0;
+//        foreach (int x in a) sum += x;
+//        Console.WriteLine(total - sum);
+//    }
+//}
+
+
+
+//10.Check if Array is Sorted
+
+//using System;
+//class Program
+//{
+//    static void Main()
+//    {
+//        int n = int.Parse(Console.ReadLine() ?? "0");
+//        int[] a = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+
+//        bool asc = true, desc = true;
+//        for (int i = 1; i < n; i++)
+//        {
+//            if (a[i] < a[i - 1]) asc = false;
+//            if (a[i] > a[i - 1]) desc = false;
+//        }
+
+//        Console.WriteLine(asc ? "Ascending" : desc ? "Descending" : "Unsorted");
+//    }
+//}
+
+
+//11.Anagram Checker
+
+//using System;
+//using System.Linq;
+//class Program
+//{
+//    static void Main()
+//    {
+//        string s1 = Console.ReadLine();
+//        string s2 = Console.ReadLine();
+//        Console.WriteLine(s1.Length == s2.Length &&
+//            s1.OrderBy(c => c).SequenceEqual(s2.OrderBy(c => c)) ? "Anagram" : "Not Anagram");
+//    }
+//}
+
+
+
+//12.Count Vowels and Consonants
+
+//using System;
+//class Program
+//{
+//    static void Main()
+//    {
+//        string s = (Console.ReadLine() ?? "").ToLower();
+//        int v = 0, c = 0;
+//        foreach (char ch in s)
+//            if ("aeiou".Contains(ch)) v++;
+//            else if (char.IsLetter(ch)) c++;
+//        Console.WriteLine($"Vowels: {v}, Consonants: {c}");
+//    }
+//}
+
+
+//13.Longest Word in a Sentence
+
+//using System;
+//using System.Linq;
+//class Program
+//{
+//    static void Main()
+//    {
+//        string[] words = (Console.ReadLine() ?? "").Split(' ', StringSplitOptions.RemoveEmptyEntries);
+//        Console.WriteLine(words.OrderByDescending(w => w.Length).First());
+//    }
+//}
+
+
+//14.Toggle Case of Each Character
+
+//using System;
+//using System.Linq;
+//class Program
+//{
+//    static void Main()
+//    {
+//        string s = Console.ReadLine() ?? "";
+//        Console.WriteLine(new string(s.Select(ch => char.IsUpper(ch) ? char.ToLower(ch) : char.ToUpper(ch)).ToArray()));
+//    }
+//}
+
+
+
+//15.Check Pangram
+
+//using System;
+//using System.Linq;
+//class Program
+//{
+//    static void Main()
+//    {
+//        string s = (Console.ReadLine() ?? "").ToLower();
+//        Console.WriteLine(s.Where(char.IsLetter).Distinct().Count() == 26 ? "Pangram" : "Not Pangram");
+//    }
+//}
+
+
+
+//16.Armstrong Number Checker
+
+//using System;
+//class Program
+//{
+//    static void Main()
+//    {
+//        int n = int.Parse(Console.ReadLine() ?? "0"), t = n, sum = 0, d = n.ToString().Length;
+//        while (t > 0) { int r = t % 10; sum += (int)Math.Pow(r, d); t /= 10; }
+//        Console.WriteLine(sum == n ? "Armstrong" : "Not Armstrong");
+//    }
+//}
+
+
+//17.Generate Fibonacci Series
+
+//using System;
+//class Program
+//{
+//    static void Main()
+//    {
+//        int n = int.Parse(Console.ReadLine() ?? "0");
+//        int a = 0, b = 1;
+//        for (int i = 0; i < n; i++)
+//        {
+//            Console.Write(a + " ");
+//            int c = a + b; a = b; b = c;
+//        }
+//    }
+//}
+
+//18.Find All Perfect Numbers up to N
+
+//using System;
+//class Program
+//{
+//    static void Main()
+//    {
+//        int n = int.Parse(Console.ReadLine() ?? "0");
+//        for (int i = 2; i <= n; i++)
+//        {
+//            int sum = 1;
+//            for (int j = 2; j * j <= i; j++)
+//                if (i % j == 0) sum += j + (j * j == i ? 0 : i / j);
+//            if (sum == i) Console.Write(i + " ");
+//        }
+//    }
+//}
+
+
+//19.Convert Decimal to Binary and Vice Versa
+
+//Decimal → Binary
+
+//using System;
+//class Program
+//{
+//    static void Main()
+//    {
+//        int n = int.Parse(Console.ReadLine() ?? "0");
+//        string bin = "";
+//        while (n > 0) { bin = n % 2 + bin; n /= 2; }
+//        Console.WriteLine(bin == "" ? "0" : bin);
+//    }
+//}
+
+
+//🔹 Binary → Decimal
+
+//using System;
+//class Program
+//{
+//    static void Main()
+//    {
+//        string bin = Console.ReadLine() ?? "0";
+//        int dec = 0;
+//        foreach (char c in bin) dec = dec * 2 + (c - '0');
+//        Console.WriteLine(dec);
+//    }
+//}
+
+
+//20.Sum of Prime Numbers in a Range
+
+//using System;
+//class Program
+//{
+//    static bool IsPrime(int x)
+//    {
+//        if (x < 2) return false;
+//        for (int i = 2; i * i <= x; i++) if (x % i == 0) return false;
+//        return true;
+//    }
+//    static void Main()
+//    {
+//        string[] input = Console.ReadLine().Split();
+//        int a = int.Parse(input[0]), b = int.Parse(input[1]), sum = 0;
+//        for (int i = a; i <= b; i++) if (IsPrime(i)) sum += i;
+//        Console.WriteLine(sum);
+//    }
+//}
+
+
+//21.Pascal’s Triangle Generator
+
+//using System;
+
+//class Program
+//{
+//    static void Main()
+//    {
+//        Console.Write("Enter number of rows: ");
+//        int n = int.Parse(Console.ReadLine());
+
+//        for (int i = 0; i < n; i++)
+//        {
+//            int num = 1;
+//            for (int j = 0; j <= i; j++)
+//            {
+//                Console.Write(num + " ");
+//                num = num * (i - j) / (j + 1);
+//            }
+//            Console.WriteLine();
+//        }
+//    }
+//}
+
+
+
+//22.Find Leader Elements in Array
+
+//using System;
+//using System.Collections.Generic;
+
+//class Program
+//{
+//    static void Main()
+//    {
+//        Console.Write("Enter array elements: ");
+//        int[] arr = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+//        List<int> leaders = new List<int>();
+//        int maxRight = arr[arr.Length - 1];
+//        leaders.Add(maxRight);
+
+//        for (int i = arr.Length - 2; i >= 0; i--)
+//        {
+//            if (arr[i] > maxRight)
+//            {
+//                leaders.Add(arr[i]);
+//                maxRight = arr[i];
+//            }
+//        }
+
+//        leaders.Reverse();
+//        Console.WriteLine("Leaders: " + string.Join(" ", leaders));
+//    }
+//}
+
+
+
+//23.Matrix Transpose
+
+//using System;
+
+//class Program
+//{
+//    static void Main()
+//    {
+//        int[,] matrix = { { 1, 2, 3 }, { 4, 5, 6 }, { 7, 8, 9 } };
+//        int n = matrix.GetLength(0);
+//        int m = matrix.GetLength(1);
+
+//        int[,] transpose = new int[m, n];
+//        for (int i = 0; i < n; i++)
+//        {
+//            for (int j = 0; j < m; j++)
+//            {
+//                transpose[j, i] = matrix[i, j];
+//            }
+//        }
+
+//        Console.WriteLine("Transpose:");
+//        for (int i = 0; i < m; i++)
+//        {
+//            for (int j = 0; j < n; j++)
+//            {
+//                Console.Write(transpose[i, j] + " ");
+//            }
+//            Console.WriteLine();
+//        }
+//    }
+//}
+
+
+//24.Count Frequency of Each Word in a Sentence
+
+//using System;
+//using System.Collections.Generic;
+
+//class Program
+//{
+//    static void Main()
+//    {
+//        Console.Write("Enter a sentence: ");
+//        string[] words = Console.ReadLine().ToLower().Split(' ');
+//        Dictionary<string, int> freq = new Dictionary<string, int>();
+
+//        foreach (string word in words)
+//        {
+//            if (freq.ContainsKey(word))
+//                freq[word]++;
+//            else
+//                freq[word] = 1;
+//        }
+
+//        foreach (var kvp in freq)
+//            Console.WriteLine($"{kvp.Key}: {kvp.Value}");
+//    }
+//}
+
+
+
+//25.Check Sudoku Row Validity
+
+//using System;
+//using System.Linq;
+
+//class Program
+//{
+//    static void Main()
+//    {
+//        Console.Write("Enter 9 Sudoku numbers: ");
+//        int[] row = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+
+//        bool valid = row.Length == 9 && row.Distinct().Count() == 9 && row.All(x => x >= 1 && x <= 9);
+//        Console.WriteLine(valid ? "Valid Sudoku Row " : "Invalid Sudoku Row ");
+//    }
+//}
+
+
+
+//26.Spiral Matrix Generator
+
+//using System;
+
+//class Program
+//{
+//    static void Main()
+//    {
+//        int n = int.Parse(Console.ReadLine() ?? "0"), num = 1;
+//        int[,] m = new int[n, n];
+//        for (int l = 0, r = n - 1, t = 0, b = n - 1; l <= r && t <= b; l++, r--, t++, b--)
+//        {
+//            for (int i = l; i <= r; i++) m[t, i] = num++;
+//            for (int i = t + 1; i <= b; i++) m[i, r] = num++;
+//            for (int i = r - 1; i >= l && t != b; i--) m[b, i] = num++;
+//            for (int i = b - 1; i > t && l != r; i--) m[i, l] = num++;
+//        }
+
+//        for (int i = 0; i < n; i++)
+//            Console.WriteLine(string.Join("\t", Enumerable.Range(0, n).Select(j => m[i, j])));
+//    }
+//}
+
+
+
+//27.Password Strength Validator
+
+//using System;
+//using System.Text.RegularExpressions;
+
+//class Program
+//{
+//    static void Main()
+//    {
+//        Console.Write("Enter password: ");
+//        string password = Console.ReadLine();
+
+//        bool isStrong = password.Length >= 8 &&
+//                        Regex.IsMatch(password, "[A-Z]") &&
+//                        Regex.IsMatch(password, "[a-z]") &&
+//                        Regex.IsMatch(password, "[0-9]") &&
+//                        Regex.IsMatch(password, "[!@#$%^&*()]");
+
+//        Console.WriteLine(isStrong ? "Strong Password " : "Weak Password ");
+//    }
+//}
+
+
+//28.Number Pyramid Pattern
+
+//using System;
+
+//class Program
+//{
+//    static void Main()
+//    {
+//        Console.Write("Enter n: ");
+//        int n = int.Parse(Console.ReadLine());
+//        int num = 1;
+
+//        for (int i = 1; i <= n; i++)
+//        {
+//            Console.Write(i + " ");
+//            for (int j = 1; j <= i; j++)
+//            {
+//                Console.Write(num + " ");
+//                num++;
+//            }
+//            Console.WriteLine();
+//        }
+//    }
+//}
+
+
+//29.Digit Frequency Counter
+
+//using System;
+
+//class Program
+//{
+//    static void Main()
+//    {
+//        Console.Write("Enter number: ");
+//        string input = Console.ReadLine();
+//        int[] freq = new int[10];
+
+//        foreach (char c in input)
+//            if (char.IsDigit(c))
+//                freq[c - '0']++;
+
+//        for (int i = 0; i < 10; i++)
+//            if (freq[i] > 0)
+//                Console.WriteLine($"Digit {i}: {freq[i]} time(s)");
+//    }
+//}
+
+
+
+//30.Magic Square Validator
+
+//using System;
+//using System.Linq;
+
+//class Program
+//{
+//    static void Main()
+//    {
+//        int n = int.Parse(Console.ReadLine() ?? "0");
+//        int[,] m = new int[n, n];
+//        for (int i = 0; i < n; i++)
+//        {
+//            var r = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+//            for (int j = 0; j < n; j++) m[i, j] = r[j];
+//        }
+
+//        int sum = Enumerable.Range(0, n).Sum(i => m[0, i]);
+//        bool ok = Enumerable.Range(0, n).All(i => Enumerable.Range(0, n).Sum(j => m[i, j]) == sum &&
+//                                                   Enumerable.Range(0, n).Sum(j => m[j, i]) == sum)
+//                     && Enumerable.Range(0, n).Sum(i => m[i, i]) == sum
+//                     && Enumerable.Range(0, n).Sum(i => m[i, n - i - 1]) == sum;
+
+//        Console.WriteLine(ok ? "Magic Square " : "Not a Magic Square ");
+//    }
+//}
